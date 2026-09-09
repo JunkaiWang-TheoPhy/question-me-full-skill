@@ -2,7 +2,7 @@
 
 🇺🇸 [English](README.md) | 🇨🇳 [中文](README.zh.md)
 
-<h1>Question Me Skill</h1>
+<h1>Question Me Full Skill</h1>
 
 ![Visibility](https://img.shields.io/badge/visibility-public-brightgreen) ![License](https://img.shields.io/badge/license-Apache--2.0-blue) ![Type](https://img.shields.io/badge/type-Codex%20skill-6f42c1)
 
@@ -12,28 +12,28 @@
 
 ## Introduction
 
-`Question Me` turns completed agent work into an evidence-grounded mastery loop. After a meaningful task or project phase, the agent reconstructs what happened from the conversation, artifacts, diffs, tests, sources, decisions, and remaining limitations. It then tests whether the user can explain the mechanism, audit the evidence, and transfer the lesson to a nearby problem.
+`Question Me Full` turns completed agent work into evidence-grounded batch quizzes with persistent, private learning records. It reconstructs what happened from the conversation and project evidence, tests the user's understanding, and stores only bounded knowledge summaries under the Codex data directory rather than inside the assessed project.
 
 This is different from `grilling`:
 
 - `grilling` works before execution, when unresolved decisions should shape a plan;
-- `question-me` works after meaningful work exists, when answers can be judged against evidence.
+- `question-me-full` works after meaningful work exists, when answers can be judged against evidence and retained across assessment sessions.
 
 ## Mastery loop
 
 ```text
 completed work
       ↓
-ground-truth mastery map
+ground-truth mastery map and temporary answer key
       ↓
-one high-leverage question
+objective question batch
       ↓
-answer classification and smallest gap
+batch grading with evidence-linked corrections
       ↓
-hint, retry, delayed review, and transfer
+private knowledge summary and transient-key cleanup
 ```
 
-The skill does not treat an answer given immediately after a hint as durable mastery. A topic is mastered only when the user can reconstruct the causal chain, distinguish the chosen approach from a plausible alternative, connect claims to evidence, and apply the mechanism to a new case without answer-revealing hints.
+Full questions and answer keys exist only while an assessment is active. On normal completion, a requested stop, an unrelated topic switch, or an unrecoverable interruption, transient material is removed and the skill keeps a dated natural-language summary of coverage, accuracy, strengths, weaknesses, and untested areas.
 
 ## Evidence boundary
 
@@ -46,10 +46,11 @@ Answers do not authorize project changes. When an answer exposes a possible proj
 - [SKILL.md](SKILL.md) contains the canonical behavior.
 - [agents/openai.yaml](agents/openai.yaml) contains the Codex interface metadata.
 - [evals/scenarios.md](evals/scenarios.md) contains behavioral evaluation cases.
+- [references/record-lifecycle.md](references/record-lifecycle.md) defines private persistence and cleanup.
 
 ## Installation
 
-Install the repository as a Codex skill or copy it into your configured skills directory, then invoke `$question-me` after completing meaningful work.
+Install the repository as a Codex skill or copy it into your configured skills directory, then invoke `$question-me-full` when retained project-level learning history is useful. Use the separate ephemeral `$question-me` skill for rapidly changing projects or one-time assessment.
 
 ## License
 

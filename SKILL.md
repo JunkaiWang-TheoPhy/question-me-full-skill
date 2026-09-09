@@ -1,55 +1,48 @@
 ---
-name: question-me
-description: Use after an agent has completed a meaningful task or project phase and the user wants to be tested on how it worked, why decisions were made, what the evidence established, or whether they can transfer the understanding to a new case.
+name: question-me-full
+description: Use after an agent has completed a meaningful task or project phase and the user explicitly wants objective questions plus persistent project-level learning records across assessment sessions.
 ---
 
-# Question Me
+# Question Me Full
 
-Turn completed agent work into an evidence-grounded mastery loop. The user answers as a learner; the agent evaluates understanding, teaches through hints, and verifies that missed concepts can later be recalled and applied.
+Test the user's understanding of completed agent work and retain project-level learning records. Unlike pre-execution `grilling`, `question-me-full` grades answers against existing evidence. Answers never authorize project changes. Label possible project errors as candidate corrections and change modes only on explicit request.
 
-## Boundary
+Run only when explicitly invoked. On every run, read [the record lifecycle](references/record-lifecycle.md) before creating or updating Question-Me data.
 
-Use `grilling` before execution when unresolved user decisions should shape the plan. Use `question-me` after meaningful work exists and the answers are judged against that work.
+## Prepare
 
-During this skill, an answer does not authorize changing the project. Keep project decisions and learning evaluation separate unless the user explicitly asks to revise the work.
+Use the current task plus only explicitly included tasks or artifacts. Inspect its conversation, artifacts, diffs, tests, sources, decisions, corrections, and limitations. Never write Question-Me data into the assessed project.
 
-## Establish Ground Truth
+Build a mastery map that follows both:
 
-Before asking questions, inspect the completed task's conversation, artifacts, diffs, tests, sources, decisions, corrections, and remaining limitations. Build a private mastery map covering only material the user could reasonably learn:
+- project history: goal, route, implementation, verification, limitations;
+- understanding depth: result, mechanism, evidence, changed-condition consequences.
 
-- what the task was trying to establish;
-- the causal sequence of important decisions and discoveries;
-- the mechanism that makes the result work;
-- rejected approaches, failure modes, and counterexamples;
-- what the evidence proves and what remains uncertain;
-- how the lesson transfers to a nearby problem.
+Ask only about user-accessible evidence, not hidden reasoning or incidental trivia. For unresolved claims, “the available evidence cannot determine this” may be correct.
 
-Do not quiz hidden chain-of-thought, incidental implementation trivia, unsupported claims, or facts that were never made available. If the work is incomplete, test understanding of its current evidence boundary instead of treating a hypothesis as settled.
+Before showing a batch, write a temporary answer key containing each number, correct choice, short basis, critical evidence, and partial-credit eligibility. It must predate the user's answers.
 
-## Mastery Loop
+## Ask in Batches
 
-Ask one focused question at a time unless the user requests an exam-style batch. Start with a diagnostic question about a high-leverage concept, not a vocabulary check. Do not reveal the answer in the question.
+Use only single-choice, multiple-choice, and true/false questions. Ask the current knowledge frontier in one manageable batch; split it when answer mapping becomes unclear. Downstream questions wait for prerequisite coverage.
 
-After each response:
+Follow the project's causal sequence while increasing from result recognition to mechanism, evidence, and changed-condition reasoning. Adapt to the project, explicit preferences, and demonstrated performance.
 
-1. Classify it as **correct**, **partly correct**, **incorrect**, or **not yet supported by the project evidence**.
-2. State briefly what the user understood and identify the smallest consequential gap.
-3. If correct, ask a harder question that requires explanation, evidence, comparison, prediction, or transfer.
-4. If partly correct or incorrect, do not immediately give the full solution. Give one hint and let the user retry.
-5. Escalate hints only as needed: conceptual cue, relevant artifact or observation, smaller sub-question, then a worked explanation after repeated difficulty or an explicit request for the answer.
-6. Revisit missed concepts later in a different form. A corrected answer immediately after a hint is progress, not yet durable mastery.
+## Grade and Continue
 
-Prefer “why,” “what would fail if,” “which evidence distinguishes,” and “how would this change if” questions. Adapt terminology and mathematical depth to the user's demonstrated level.
+After the user submits a batch:
 
-## Completion
+1. Grade every item together as correct, partly correct, incorrect, or unsupported by current evidence.
+2. For each wrong item, give the correct answer and a concise explanation. For critical items, link the exact source location and identify its commit or uncommitted state.
+3. Give no aggregate accuracy yet.
+4. In the lower half of the same response, ask the next batch from the newly unlocked frontier.
 
-Consider a topic mastered only when the user can reconstruct the causal chain, distinguish the chosen approach from a plausible alternative, connect the claim to evidence, and apply it to a nearby case without answer-revealing hints.
+For multiple-choice partial credit, award the fraction of correct options selected only when every selected option is correct; selecting any incorrect option yields zero.
 
-When the user stops or the mastery map is covered, summarize:
+Revisit errors with low-overlap variants that change at least two of context, reasoning direction, conditions, evidence, or distractors. Revisit load-bearing errors sooner.
 
-- demonstrated understanding;
-- concepts still fragile or untested;
-- corrections learned during the session;
-- the next concrete learning action, if one is useful.
+## End
 
-Do not claim that quiz performance proves professional competence. Keep the tone rigorous, specific, and collaborative rather than punitive.
+End on important-scope coverage, a user stop or “I understand,” or an unrelated topic. For a topic switch, finalize silently, answer the new request, then append one short save notice.
+
+At any ending, congratulate completion without claiming the score proves mastery. Only then report overall and core accuracy at a readable precision, followed by a natural-language account of understanding, errors, untested areas, and useful review. Offer further `question-me-full` topics in chat without saving them as queued work.

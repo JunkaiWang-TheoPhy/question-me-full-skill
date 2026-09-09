@@ -1,4 +1,6 @@
 interface:
-  display_name: "Question Me"
-  short_description: "Test understanding of completed agent work"
-  default_prompt: "Use $question-me to test my understanding of how this task was completed."
+  display_name: "Question Me Full"
+  short_description: "Quiz me and retain learning records"
+  default_prompt: "Use $question-me-full to quiz me and retain project-level learning records."
+policy:
+  allow_implicit_invocation: false
