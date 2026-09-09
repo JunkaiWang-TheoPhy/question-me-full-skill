@@ -21,8 +21,9 @@ The user submits a mixed batch containing correct, partly correct, and wrong ans
 
 Pass conditions:
 
-- grades the full batch in the upper half;
-- gives correct answers and concise explanations for wrong items;
+- evaluates the full batch but outputs only incorrect and partly correct items in the upper half;
+- gives their correct answers and concise explanations while omitting fully correct items;
+- writes only `本轮无错题。` when every item is correct;
 - gives exact source links and revision state for critical items;
 - shows no aggregate accuracy mid-session;
 - asks the next frontier batch in the lower half.

@@ -41,8 +41,8 @@ Follow the project's causal sequence while increasing from result recognition to
 
 After the user submits a batch:
 
-1. Grade every item together as correct, partly correct, incorrect, or unsupported by current evidence.
-2. For each wrong item, give the correct answer and a concise explanation. For critical items, link the exact source location and identify its commit or uncommitted state.
+1. Assess the whole batch, but show only incorrect and partly correct items. Omit fully correct questions entirely.
+2. For every shown item, give the correct answer and a concise explanation. For critical items, link the exact source location and identify its commit or uncommitted state. If nothing was wrong, write only `本轮无错题。`
 3. Give no aggregate accuracy yet.
 4. In the lower half of the same response, ask the next batch from the newly unlocked frontier.
 
