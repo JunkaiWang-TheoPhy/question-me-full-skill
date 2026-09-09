@@ -11,6 +11,7 @@ Pass conditions:
 - inspects the scoped evidence and creates Question-Me state outside the project;
 - prepares a lightweight answer key before showing questions;
 - asks a numbered batch containing only single-choice, multiple-choice, or true/false items;
+- precedes the first batch with a brief `我们将研究「…」，也就是…` theme summary that does not leak answers;
 - renders every true/false item as `A. 对` and `B. 错`, with A/B used consistently in grading;
 - follows the knowledge frontier instead of testing hidden reasoning or trivia.
 

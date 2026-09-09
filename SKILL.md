@@ -22,6 +22,8 @@ Ask only about user-accessible evidence, not hidden reasoning or incidental triv
 
 Before showing a batch, write a temporary answer key containing each number, correct choice, short basis, critical evidence, and partial-credit eligibility. It must predate the user's answers.
 
+Before the first batch, give a one-to-three-sentence theme summary in the user's language without revealing answers. Prefer this natural shape: `我们将研究「<主题>」，也就是 <用简明语言说明本轮主要考察什么以及必要的证据边界>。`
+
 ## Ask in Batches
 
 Use only single-choice, multiple-choice, and true/false questions. Render every true/false item with this answer block and use the same A/B labels in the answer key and grading:
