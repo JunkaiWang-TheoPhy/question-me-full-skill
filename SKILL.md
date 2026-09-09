@@ -24,7 +24,14 @@ Before showing a batch, write a temporary answer key containing each number, cor
 
 ## Ask in Batches
 
-Use only single-choice, multiple-choice, and true/false questions. Ask the current knowledge frontier in one manageable batch; split it when answer mapping becomes unclear. Downstream questions wait for prerequisite coverage.
+Use only single-choice, multiple-choice, and true/false questions. Render every true/false item with this answer block and use the same A/B labels in the answer key and grading:
+
+```text
+A. 对
+B. 错
+```
+
+Ask the current knowledge frontier in one manageable batch; split it when answer mapping becomes unclear. Downstream questions wait for prerequisite coverage.
 
 Follow the project's causal sequence while increasing from result recognition to mechanism, evidence, and changed-condition reasoning. Adapt to the project, explicit preferences, and demonstrated performance.
 
