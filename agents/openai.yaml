@@ -1,0 +1,4 @@
+interface:
+  display_name: "Question Me"
+  short_description: "Test understanding of completed agent work"
+  default_prompt: "Use $question-me to test my understanding of how this task was completed."
